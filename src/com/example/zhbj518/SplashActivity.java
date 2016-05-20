@@ -1,7 +1,11 @@
 package com.example.zhbj518;
 
+import com.example.zhbj518.utils.PrefUtils;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,26 +29,26 @@ public class SplashActivity extends Activity
 		setContentView(R.layout.activity_splash);
 		rlroot = (RelativeLayout)findViewById(R.id.rl_root);
 		
-		//调用一个动画方法
+		//璋冪敤涓�涓姩鐢绘柟娉�
 		startAnima();
 	}
 
 	private void startAnima()
 	{	
 		AnimationSet set = new AnimationSet(false);
-		//旋转
+		//鏃嬭浆
 		RotateAnimation rotate = new RotateAnimation(0, 360
 				, Animation.RELATIVE_TO_SELF, 0.5f
 				, Animation.RELATIVE_TO_SELF, 0.5f);
 		rotate.setDuration(1000);
 		rotate.setFillAfter(true);
-		//缩放
+		//缂╂斁
 		ScaleAnimation scale = new ScaleAnimation(0, 1, 0, 1
 				, Animation.RELATIVE_TO_SELF, 0.5f
 				, Animation.RELATIVE_TO_SELF, 0.5f);
 		scale.setDuration(1000);
 		scale.setFillAfter(true);
-		//渐变
+		//娓愬彉
 		AlphaAnimation alpha = new AlphaAnimation(0, 1);
 		alpha.setDuration(2000);
 		alpha.setFillAfter(true);
@@ -55,7 +59,7 @@ public class SplashActivity extends Activity
 		
 		rlroot.startAnimation(set);
 		
-		//设置动画监听
+		//璁剧疆鍔ㄧ敾鐩戝惉
 		set.setAnimationListener(new AnimationListener()
 		{
 			
@@ -70,14 +74,30 @@ public class SplashActivity extends Activity
 			{
 				
 			}
-			//当动画结束时 跳转activity
+			//褰撳姩鐢荤粨鏉熸椂 璺宠浆activity
 			@Override
 			public void onAnimationEnd(Animation animation)
 			{
-				startActivity(new Intent(SplashActivity.this, GuideActivity.class));
-				finish();
+				jumpNextPager();
+				
 			}
 		});
+	}
+
+	protected void jumpNextPager() {
+		
+		boolean userGuide = PrefUtils.getBoolean(this, "is_show_user_guide", false);//false ---> No
+		
+		if(!userGuide)
+		{
+			startActivity(new Intent().setClass(SplashActivity.this, GuideActivity.class));
+			
+		}else
+		{
+			startActivity(new Intent().setClass(SplashActivity.this, MainActivity.class));
+		}
+		
+		finish();
 	}
 
 	@Override
