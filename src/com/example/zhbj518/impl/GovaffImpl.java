@@ -15,6 +15,7 @@ public class GovaffImpl extends BasePager {
 	
 	@Override
 	public void initData() {
+		setSlidingMenuEnable(true);
 		tvTitle.setText("ÕşÖÎÊÂ„Õ");
 		
 		TextView text = new TextView(mActivity);

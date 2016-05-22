@@ -15,6 +15,7 @@ public class NewsCenImpl extends BasePager {
 	
 	@Override
 	public void initData() {
+		setSlidingMenuEnable(true);
 		tvTitle.setText("¥Ë¥å©`¥¹¥»¥ó¥¿©`");
 		
 		TextView text = new TextView(mActivity);

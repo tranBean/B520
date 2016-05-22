@@ -14,9 +14,11 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class ContentFragment extends BaseFragment {
 	
@@ -55,6 +57,55 @@ public class ContentFragment extends BaseFragment {
 		mPagerList.add(new SettingImpl(mActivity));
 		
 		mViewPager.setAdapter(new ContentAdapter());
+		
+		rgGroup.setOnCheckedChangeListener(new OnCheckedChangeListener(
+				) {
+			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				switch (checkedId) {
+				case R.id.rb_home:
+					mViewPager.setCurrentItem(0, false);
+					break;
+				case R.id.rb_news:
+					mViewPager.setCurrentItem(1, false);
+					break;
+				case R.id.rb_smart:
+					mViewPager.setCurrentItem(2, false);
+					break;
+				case R.id.rb_govaff:
+					mViewPager.setCurrentItem(3, false);
+					break;
+				case R.id.rb_set:
+					mViewPager.setCurrentItem(4, false);
+					break;
+				default:
+					break;
+				}
+			}
+		});
+		
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				mPagerList.get(arg0).initData();
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		mPagerList.get(0).initData();
 	}
 	
 	class ContentAdapter extends PagerAdapter
@@ -74,7 +125,7 @@ public class ContentFragment extends BaseFragment {
 		public Object instantiateItem(ViewGroup container, int position) {
 			BasePager mPager = mPagerList.get(position);
 			container.addView(mPager.mRootView);
-			mPager.initData();//初始化数据....
+			//mPager.initData();//初始化数据....
 			return mPager.mRootView;
 		}
 		

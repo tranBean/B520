@@ -14,7 +14,7 @@ public abstract class BaseFragment extends Fragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		mActivity = getActivity();
+		mActivity = getActivity();//MainActivity
 		super.onCreate(savedInstanceState);
 	}
 	

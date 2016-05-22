@@ -5,6 +5,8 @@ import com.example.zhbj518.base.BasePager;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class HomeImpl extends BasePager {
@@ -16,6 +18,8 @@ public class HomeImpl extends BasePager {
 	
 	@Override
 	public void initData() {
+		ibMenu.setVisibility(View.GONE);
+		setSlidingMenuEnable(false);
 		tvTitle.setText("¥¹¥Þ©`¥È–|¾©");
 		
 		TextView text = new TextView(mActivity);

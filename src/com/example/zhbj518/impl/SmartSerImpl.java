@@ -15,6 +15,7 @@ public class SmartSerImpl extends BasePager {
 	
 	@Override
 	public void initData() {
+		setSlidingMenuEnable(true);
 		tvTitle.setText("¥¹¥Þ©`¥È¥µ©`¥Ó¥¹");
 		
 		TextView text = new TextView(mActivity);
