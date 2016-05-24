@@ -17,6 +17,11 @@ public class NoScrollViewpager extends ViewPager {
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean onInterceptTouchEvent(MotionEvent arg0) 
+	{
+		return false;
+	};
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent arg0) {
 		

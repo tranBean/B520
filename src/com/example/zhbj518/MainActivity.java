@@ -7,13 +7,15 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 
 public class MainActivity extends SlidingFragmentActivity {
-	private static final String FRAGMENT_LEFT_MENU = "fragment_left_menu";
-	private static final String FRAGMENT_CONTENT_MENU = "fragment_content_menu";
+	public static final String FRAGMENT_LEFT_MENU = "fragment_left_menu";
+	public static final String FRAGMENT_CONTENT_MENU = "fragment_content_menu";
+	private FragmentManager fm;
 	
 	
 	@Override
@@ -39,5 +41,19 @@ public class MainActivity extends SlidingFragmentActivity {
 		transct.replace(R.id.fl_cont_frg, new ContentFragment(), FRAGMENT_CONTENT_MENU);
 		
 		transct.commit();//提交事务
+	}
+	
+	public LeftMenuFragment getLeftMenuFragment()
+	{
+		fm = getSupportFragmentManager();
+		LeftMenuFragment leftMeFrag = (LeftMenuFragment) fm.findFragmentByTag(FRAGMENT_LEFT_MENU);
+		return leftMeFrag;
+	}
+	
+	public ContentFragment getContentFragment()
+	{
+		fm = getSupportFragmentManager();
+		ContentFragment conMeFrag = (ContentFragment) fm.findFragmentByTag(FRAGMENT_CONTENT_MENU);
+		return conMeFrag;
 	}
 }

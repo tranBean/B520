@@ -28,7 +28,7 @@ public class ContentFragment extends BaseFragment {
 	@ViewInject(R.id.vp_content)
 	private ViewPager mViewPager;
 	
-	private ArrayList<BasePager> mPagerList;
+	public ArrayList<BasePager> mPagerList;
 	
 	@Override
 	public View initViews() {
