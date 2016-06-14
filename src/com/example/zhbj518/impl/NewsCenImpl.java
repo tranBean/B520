@@ -60,6 +60,7 @@ public class NewsCenImpl extends BasePager {
 
 			@Override
 			public void onFailure(HttpException error, String msg) {
+				System.out.println("·þÎñÆ÷³¬Ê± £¡£¡£¡£¡£¡£¡£¡");
 				Toast.makeText(mActivity, msg, 0).show();
 				error.printStackTrace();
 			}
